@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: Coffea
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/coffea
+    username: coffea
+    password: coffea-pwd
+  jpa:
+    properties:
+      javax:
+        persistence:
+          schema-generation:
+            create-source: metadata
+            scripts:
+              action: update
+              create-target: target/script.sql
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: true
+  logging:
+    pattern:
+      console: "%d %-5level %logger : %msg%n"
+    level:
+      org.springframework: info
+      org.hibernate: debug
+server:
+  port: 8080
+
+app:
+  jwtSecret: "535d850c2b4863ef03be99ea07755abd"
+  expiration: 3000000
